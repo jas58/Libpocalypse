@@ -16,7 +16,12 @@ Small groups of people have formed to survive the COVID-19 era landscape, protec
 In your hands, your tablet or laptop has opened a link to something called an Academic Library.  
 
 Can your group use this to improve your situation?
-[[Let&#39;s begin.-&gt;Situation 1]]</tw-passagedata><tw-passagedata pid="2" name="Situation 1" tags="" position="256,42" size="100,100">Scrolling through the library&#39;s homepage, you notice some interesting widgets.  
+[[Let&#39;s begin.-&gt;Situation 1]]
+
+{(Set: $worldCat to false)
+(set: $openStreetMap to false)
+(set:  $wikipedia to false)
+(set: $phoneMap to false)}</tw-passagedata><tw-passagedata pid="2" name="Situation 1" tags="" position="256,42" size="100,100">Scrolling through the library&#39;s homepage, you notice some interesting widgets.  
 Match the most useful widget for each need.  One widget will remain unused.
 (Select an item to open the library&#39;s homepage in a new tab. Look for all four items in that new tab. Additional hints are available in each link.)
 [[Full Text of an article-&gt;Full Text]]
@@ -49,7 +54,7 @@ What words, phrases, or search terms would you use to search for and find articl
 (input-box:&quot;=XX=&quot;,&quot;trauma&quot;)
 P.S. You may need to log in with your NYU NetID and multi-factor authentication, MFA--the Duo app.
 [[Situation 3-&gt;Situation 3]]
-&lt;I think I need to clarify here: link is locked to a psychology db, not just any part of the databases page, but where/when/how?&gt;</tw-passagedata><tw-passagedata pid="8" name="Situation 3" tags="" position="754,44" size="100,100">After walking for weeks (avoiding planes and trains), you aren&#39;t quite sure where you are or if it is near an NYU campus.  
+&lt;I think I need to clarify here: link is locked to a psychology db, not just any part of the databases page, but where/when/how?&gt;</tw-passagedata><tw-passagedata pid="8" name="Situation 3" tags="" position="754,46" size="100,100">After walking for weeks (avoiding planes and trains), you aren&#39;t quite sure where you are or if it is near an NYU campus.  
 Miraculously, the internet and your tablet/phone/laptop are still working. You would like to find where on earth you (and your dispersed classmates) are, as well as the nearest physical library. 
 Each link will open a new tab to explore for one minute.  Each option offers additional hints and space for reflection.
 [[WorldCat-&gt;WorldCat]]
@@ -57,13 +62,23 @@ Each link will open a new tab to explore for one minute.  Each option offers add
 [[Wikipedia: New York University-&gt;Wikipedia: New York University]]
 [[Your phone&#39;s map app-&gt;Phone&#39;s map APP]]
 Which source would be your best option?
-(input-box: bind $code, &quot;XXX=&quot;, 5, &quot;Our team chose...... because it....&quot;)
-&lt;(if:(history: where (passage:it)&#39;s tags contains &quot;map&quot;)&#39;s length is 1)[Your Text Here]&gt;
+
+(if: $worldCat is true and $openStreetMap is true and $wikipedia is true and $phoneMap is true)[(input-box: bind $code, &quot;XXX=&quot;, 5, &quot;Our team chose...... because it....&quot;)]
+
 [[Let&#39;s continue-&gt;Situation 4]]</tw-passagedata><tw-passagedata pid="9" name="OpenStreetMap" tags="map" position="721,194" size="100,100">(open-url: &quot;https://www.openstreetmap.org&quot;)
-This will open a new tab. Explore this webpage for one minute. Does it tell you where you are now?  Can you tell it where you want to go?  Who organizes this information?</tw-passagedata><tw-passagedata pid="10" name="Wikipedia: New York University" tags="map" position="689,319" size="100,100">(open-url:&quot;https://www.wikipedia.org/wiki/New_York_University&quot;)
+This will open a new tab. Explore this webpage for one minute. Does it tell you where you are now?  Can you tell it where you want to go?  Who organizes this information?
+
+(set: $openStreetMap to true)
+[[back-&gt;Situation 3]] </tw-passagedata><tw-passagedata pid="10" name="Wikipedia: New York University" tags="map" position="689,319" size="100,100">(open-url:&quot;https://www.wikipedia.org/wiki/New_York_University&quot;)
 This opens a new tab to explore for 30 seconds.  Where could you find location information?  
-(input-box: bind $code, &quot;XXX=&quot;, 5, &quot;I see coordinates for latitude and longitude in.... and in the infobox I see...&quot;)</tw-passagedata><tw-passagedata pid="11" name="Phone&#39;s map APP" tags="map" position="979,194" size="100,100">Take a moment to compare how you use your phone&#39;s map app to find your way (or a library) to the other options.
-(input-box: bind $code, &quot;XXX=&quot;, 5, &quot;I hadn&#39;t known where the information came from before! Next time I&#39;ll try..... because it has....&quot;)</tw-passagedata><tw-passagedata pid="12" name="Situation 4" tags="" position="960,49" size="100,100">Congratulations! You have found your current location as well as a nearby library for curb-side pickup.  
+(input-box: bind $code, &quot;XXX=&quot;, 5, &quot;I see coordinates for latitude and longitude in.... and in the infobox I see...&quot;)
+
+(set: $wikipedia to true)
+[[back-&gt;Situation 3]] </tw-passagedata><tw-passagedata pid="11" name="Phone&#39;s map APP" tags="map" position="979,194" size="100,100">Take a moment to compare how you use your phone&#39;s map app to find your way (or a library) to the other options.
+(input-box: bind $code, &quot;XXX=&quot;, 5, &quot;I hadn&#39;t known where the information came from before! Next time I&#39;ll try..... because it has....&quot;)
+
+(set: $phoneMap to true)
+[[back-&gt;Situation 3]] </tw-passagedata><tw-passagedata pid="12" name="Situation 4" tags="" position="960,49" size="100,100">Congratulations! You have found your current location as well as a nearby library for curb-side pickup.  
 NYU libraries have millions of books and articles, and you can request even more!  Sometimes we ask another library to share their book with you through us. It is called &quot;Interlibrary Loan&quot;.  Can you locate the &quot;Interlibrary Loan&quot; option under My Accounts?
 If you closed the tab, try [[NYU Shanghai Library-&gt;Full Text]]
 (dropdown: bind _origin, &quot;___&quot;, &quot;Found it!&quot;, &quot;Still looking&quot;, &quot;I&#39;ll ask in chat later&quot;)
@@ -97,7 +112,10 @@ I also adapted the titles to my university&#39;s collection.</tw-passagedata><tw
 This will open a new tab you will need to explore for maybe 30 seconds.
 What words, phrases, or search terms would you use to search for and find articles to help you?
 Hint: Try a word you know in the search box to &quot;Map Term to Subject Heading&quot;</tw-passagedata><tw-passagedata pid="20" name="WorldCat" tags="" position="841,198" size="100,100">(open-url: &quot;https://www.worldcat.org&quot;)
-This will open a new tab. Explore this webpage for one minute.  Look up Unflattening, then select the first option, to see a page where you can explore or tell it your closest library.</tw-passagedata><tw-passagedata pid="21" name="Situation 5, optional" tags="" position="1173,42" size="100,100">Uh oh! It looks like rain, again. 
+This will open a new tab. Explore this webpage for one minute.  Look up Unflattening, then select the first option, to see a page where you can explore or tell it your closest library.
+
+(set: $worldCat to true)
+[[back-&gt;Situation 3]] </tw-passagedata><tw-passagedata pid="21" name="Situation 5, optional" tags="" position="1173,42" size="100,100">Uh oh! It looks like rain, again. 
 Electronics are best kept dry.  You need to build a waterproof tent while you camp here for the semester.  Where can you look for instructions to engineer a makeshift waterproof tent?
 [[Youtube: Nomadic Architecture -&gt;Youtube: Nomadic Architecture]]
 [[Movie: Bush mechanics-&gt;Movie: Bush Mechanics]]
